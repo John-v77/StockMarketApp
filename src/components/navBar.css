@@ -1,0 +1,44 @@
+nav{
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    font-size: 1.5em;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-top: 10px;
+}
+
+
+@media screen and (max-width: 767){
+
+}
+
+
+.shadow{
+    box-shadow: 0 6px 1rem rgba(0,0,0,.15);
+}
+
+.navBtn{
+    margin: 0px 6vw;
+}
+
+@media screen and (min-width: 768){
+    .navBtn{
+        margin: 0px 9vw;
+    }
+
+}
+
+@media screen and (min-width: 1024px){
+.navBtn{
+    margin: 0px 60px;
+    padding: 30px 0;
+}
+
+
+.shadow{
+    box-shadow: 0 6px 1rem rgba(0,0,0,.15);
+}
+}

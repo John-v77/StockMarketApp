@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  background-color: white;
+  height: 100vh;
 }
 
 .App-logo {
@@ -34,5 +35,12 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (min-width: 1024px){
+  .App {
+    width: 70vw;
+    margin-left: 15vw;
   }
 }
