@@ -1,6 +1,6 @@
 .App {
   background-color: white;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -38,9 +38,21 @@
   }
 }
 
-@media screen and (min-width: 1024px){
-  .App {
-    width: 70vw;
-    margin-left: 15vw;
-  }
+
+/* changes color to profit or losses */
+
+.color-change[data-monetary-amount]{
+      /* right-align monetary amounts */
+        text-align: right;
+        color: green;   
+}
+
+/* make the cells output their value */
+.color-change[data-monetary-amount]:after {
+  content: attr(data-monetary-amount);
+}
+
+/* make debit amounts show up in red */
+.color-change[data-monetary-amount^="-"]:after {
+  color: red;
 }

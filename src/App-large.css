@@ -7,6 +7,28 @@
 
 
 
+  .summary-Section{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .summary-column{
+    display: flex;
+    flex-flow: column;
+    align-items: baseline;
+    text-align: left;
+  }
+
+  .summary-column div{
+    width: 20vw;
+    border-bottom: solid 1px lightgray;
+  }
+
+  .summary-column p{
+    font-size: 1.2rem;
+  }
+
   /* .App-header {
     background-color: #282c34;
     min-height: 100vh;
