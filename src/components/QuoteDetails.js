@@ -134,7 +134,7 @@ const ChangeColors = ((ChangeInPrice) =>  (ChangeInPrice > 0) ? "green" : "red" 
 
 const numberFormat = () =>{ }
 
-let 
+let priceColor = ChangeColors(appl.symbol)
 
   return (
 
@@ -142,9 +142,9 @@ let
         <div class="component-container">
           <div class="ticker-info-details">
               <div>
-                {appl.symbol} {appl.companyName}   {/*toFixed(2), */}
+                {appl.symbol} {appl.companyName}   {/*toFixed(2), style={{$priceColor}}*/}
               </div>
-              <div class="color-change"  style={{$colorState}}>
+              <div class="color-change" >
                 ${appl.change.toFixed(2)} ({((appl.changePercent.toFixed(2))*100).toFixed(2)})%
               </div>
           </div>
