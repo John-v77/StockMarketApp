@@ -37,6 +37,17 @@
   margin-left: 1.5vw;
 }
 
+.Table-head-myList{
+  display: flex;
+  justify-items: flex-end;
+  align-items: baseline;
+  background-color: burlywood;
+}
+
+.Table-head-myList div{
+  margin:"0 20px"
+}
+
   /* .App-header {
     background-color: #282c34;
     min-height: 100vh;

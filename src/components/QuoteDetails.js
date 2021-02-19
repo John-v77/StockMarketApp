@@ -23,16 +23,28 @@ function QouteDetails(props) {
 
 
 
-  let [stock, setStock] = useState({});
+  let [stock, setStock] = useState(appl);
   let [stockChart, setSTockChart] = useState([]);
+  let [queryStock, setQueryStock] = useState('');
+
+
+
+  const handleChange = (e) => {
+    
+    console.log(e.target.value)
+    setQueryStock(e.target.value)
+  }
+
+
+
+
+
   //Function for getting a chart
   const getStockChart = (symbol) => {
     //api token
     const token = "pk_695271cfa88a4f01969c642eb1576b3f";
     const interval = "intraday-prices";
     const setPeriod = '';
-
-
 
     //axios request
     //stock/{symbol}/intraday-prices
@@ -42,59 +54,20 @@ function QouteDetails(props) {
         `https://cloud.iexapis.com/stable/stock/${symbol}/${interval}?token=${token}`
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setSTockChart(res.data);
       });
   };
 
 
   useEffect(() => {
-    getStockChart("nio");
+    getStockChart("appl");
+    getStockQuote("appl")
+
   }, []);
 
 
-  const data = [
-    { name: "Page A", uv: 400, pv: 2400, amt: 2400 },
-
-    {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
-    },
-    {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
-    },
-    {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
-  ];
-
-
+  
   //Function for drawing a chart
   //   drawChart(drawChart)
 
@@ -108,10 +81,18 @@ function QouteDetails(props) {
         `https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${token}`
       )
       .then((dataZ) => {
-        console.log(dataZ);
+        // console.log(dataZ);
         setStock(dataZ.data);
       });
   };
+
+  const getData =(e)=>{
+
+    getStockChart(queryStock); 
+    getStockQuote(queryStock) 
+
+  }
+
 
   // UseEffect helps rendering the page without refreshing the page
  
@@ -122,7 +103,7 @@ function QouteDetails(props) {
       return (
         <div>
           <li>
-            {eachItem} : {stock[eachItem]}
+            {eachItem} : {numberFormat(stock[eachItem])}
           </li>
         </div>
       );
@@ -130,22 +111,43 @@ function QouteDetails(props) {
   };
 
   //Returns the proper Html Page
-const ChangeColors = ((ChangeInPrice) =>  (ChangeInPrice > 0) ? "green" : "red" )
+const ChangeColors = (ChangeInPrice) =>  {
+  return(ChangeInPrice > 0) ? "green" : "red"
+}
 
-const numberFormat = () =>{ }
+const numberFormat = (element) =>{
 
-let priceColor = ChangeColors(appl.symbol)
+    if(typeof element != 'number'){
+        return element
+    }
+    // Checks if the number is in procentage %
+    if(element < 1){
+      return (element*100).toFixed(2)
+    }else if(element >= 1000000){
+      return (element / 1000000).toFixed(2) +' mil'
+    }element.toFixed(2)
+    // (element < 1) ? (element*100).toFixed(2) : 
+    // (element > 1000000000) ? ((element / 1000000000).toFixed(2) +' bil') : element.toFixed(2)
+
+  }
+
+ let priceColor = 'red'
+console.log(ChangeColors(stock.change))
 
   return (
 
     <div>
         <div class="component-container">
           <div class="ticker-info-details">
+          <div>
+            <input type="text" onChange={handleChange}/>
+            <button onClick={getData} type="submit">Find Stock</button>
+          </div>
               <div>
-                {appl.symbol} {appl.companyName}   {/*toFixed(2), style={{$priceColor}}*/}
+                {stock.symbol} {stock.companyName}   {/*toFixed(2), style={{$priceColor}}*/}
               </div>
-              <div class="color-change" >
-                ${appl.change.toFixed(2)} ({((appl.changePercent.toFixed(2))*100).toFixed(2)})%
+              <div style={{color:'red'}}>
+                ${stock.change.toFixed(2)} ({((stock.changePercent.toFixed(2))*100).toFixed(2)})%
               </div>
           </div>
     </div>
@@ -174,8 +176,8 @@ let priceColor = ChangeColors(appl.symbol)
             <YAxis type="number" domain={['auto', 'auto']} />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="high" stroke="#8884d8" activeDot={{ r: 8 }} />
-            <Line type="monotone" dataKey="low" stroke="#82ca9d" />
+            <Line type="monotone" dataKey="high" stroke="#8884d8" dot={false} />
+            <Line type="monotone" dataKey="low" stroke="#82ca9d" dot={false} />
           </LineChart>
       </div>
 
@@ -185,26 +187,26 @@ let priceColor = ChangeColors(appl.symbol)
       <div class="summary-Section">
         {/* Stock Summary   First Column*/}
         <div class="summary-column">
-          <div> previousClose : {appl.previousClose} </div>
-          <div> Open Price : {appl.iexOpen} </div>
-          <div> Average volume : {appl.avgTotalVolume} </div>
-          <div> Previous Volume : {appl.previousVolume} </div>
+          <div> previousClose : {stock.previousClose} </div>
+          <div> Open Price : {stock.iexOpen} </div>
+          <div> Average volume : {stock.avgTotalVolume} </div>
+          <div> Previous Volume : {stock.previousVolume} </div>
         </div>
 
         {/* Stock Summary   Second Column*/}
         <div class="summary-column">
-          <div>Year to date : {appl.ytdChange} </div>
-          <div>52 Weeks Range : {appl.week52High - appl.week52Low}</div>
-          <div>Market Cap : {appl.marketCap}</div>
-          <div>P/E : {appl.peRatio}</div>
+          <div>Year to date : {stock.ytdChange} </div>
+          <div>52 Weeks Range : {stock.week52High - stock.week52Low}</div>
+          <div>Market Cap : {stock.marketCap}</div>
+          <div>P/E : {stock.peRatio}</div>
         </div>
 
         {/* Stock Summary   Third Column*/}
         <div class="summary-column">
-          <div>Bid Price : {appl.iexBidPrice}</div>
-          <div>Bid Size : {appl.iexBidSize} </div>
-          <div>Ask Price : {appl.iexAskPrice} </div>
-          <div>Ask Size : {appl.iexAskSize} </div>
+          <div>Bid Price : {stock.iexBidPrice}</div>
+          <div>Bid Size : {stock.iexBidSize} </div>
+          <div>Ask Price : {stock.iexAskPrice} </div>
+          <div>Ask Size : {stock.iexAskSize} </div>
         </div>
       </div>
       {/* {stock.companyName} */}

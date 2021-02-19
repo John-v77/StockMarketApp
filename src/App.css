@@ -56,3 +56,8 @@
 .color-change[data-monetary-amount^="-"]:after {
   color: red;
 }
+
+.flex-line{
+  display: flex;
+  justify-content: space-evenly;
+}

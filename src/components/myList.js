@@ -8,9 +8,15 @@ function MyList(props) {
 
             
             {/* First Row */}
-                        
-            <div class='list-row-myList'>
-                <div class="flex-column">
+            <div class="Table-head-myList">
+                <div>add item</div>
+                <div>sort button</div>
+            </div>         
+            <div class='list-row-myList' class="flex-line">
+                <div>
+                    button on click lets you drag the list item in place you want
+                </div>
+                <div>
                     <p>Symbol</p>
                     <p>Stock name</p>
                 </div>
@@ -20,6 +26,8 @@ function MyList(props) {
                 <div>
                     <p>Price</p><span><p>% change</p></span>
                 </div>
+                <div> button delete item</div>
+                <div></div>
 
             </div>
         </div>
