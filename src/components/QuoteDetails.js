@@ -23,54 +23,6 @@ function QouteDetails(props) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
   let [stock, setStock] = useState({});
   let [stockChart, setSTockChart] = useState([]);
   //Function for getting a chart
@@ -97,25 +49,8 @@ function QouteDetails(props) {
 
 
   useEffect(() => {
-    getStockChart("tsla");
+    getStockChart("nio");
   }, []);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   const data = [
@@ -160,8 +95,6 @@ function QouteDetails(props) {
   ];
 
 
-
-
   //Function for drawing a chart
   //   drawChart(drawChart)
 
@@ -199,48 +132,6 @@ function QouteDetails(props) {
   //Returns the proper Html Page
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   return (
     <div class="component-container">
       <div>
@@ -255,19 +146,19 @@ function QouteDetails(props) {
       
      
   <LineChart
-    width={500}
-    height={300}
+    width={1200}
+    height={500}
     data={stockChart}
     margin={{
-      top: 5,
-      right: 30,
+      top: 50,
+      right: 50,
       left: 20,
       bottom: 5,
     }}
   >
     <CartesianGrid strokeDasharray="3 3" />
     <XAxis dataKey="date" />
-    <YAxis />
+    <YAxis type="number" domain={['auto', 'auto']} />
     <Tooltip />
     <Legend />
     <Line type="monotone" dataKey="high" stroke="#8884d8" activeDot={{ r: 8 }} />
