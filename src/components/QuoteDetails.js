@@ -130,43 +130,58 @@ function QouteDetails(props) {
   };
 
   //Returns the proper Html Page
+const ChangeColors = ((ChangeInPrice) =>  (ChangeInPrice > 0) ? "green" : "red" )
 
+const numberFormat = () =>{ }
+
+let 
 
   return (
-    <div class="component-container">
-      <div>
-        {appl.symbol} {appl.companyName}
-      </div>
-      <div class="color-change">
-        {appl.change} ({appl.changePercent})
-      </div>{" "}
+
+    <div>
+        <div class="component-container">
+          <div class="ticker-info-details">
+              <div>
+                {appl.symbol} {appl.companyName}   {/*toFixed(2), */}
+              </div>
+              <div class="color-change"  style={{$colorState}}>
+                ${appl.change.toFixed(2)} ({((appl.changePercent.toFixed(2))*100).toFixed(2)})%
+              </div>
+          </div>
+    </div>
+
       {/* chanage to procentage and 2 decimal places*/}
+
+
+
       {/* Stock Chart */}
-      <div >Chart??
+      <div class="chart">
       
      
-  <LineChart
-    width={1200}
-    height={500}
-    data={stockChart}
-    margin={{
-      top: 50,
-      right: 50,
-      left: 20,
-      bottom: 5,
-    }}
-  >
-    <CartesianGrid strokeDasharray="3 3" />
-    <XAxis dataKey="date" />
-    <YAxis type="number" domain={['auto', 'auto']} />
-    <Tooltip />
-    <Legend />
-    <Line type="monotone" dataKey="high" stroke="#8884d8" activeDot={{ r: 8 }} />
-    <Line type="monotone" dataKey="close" stroke="#82ca9d" />
-  </LineChart>
-</div>
+          <LineChart
+            width={1200}
+            height={500}
+            data={stockChart}
+            margin={{
+              top: 50,
+              right: 50,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" />
+            <YAxis type="number" domain={['auto', 'auto']} />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="high" stroke="#8884d8" activeDot={{ r: 8 }} />
+            <Line type="monotone" dataKey="low" stroke="#82ca9d" />
+          </LineChart>
+      </div>
+
+
       {/* Stock Summary */}
-      <h3>Summary</h3>
+      <h3 class="summary-title" >Summary</h3>
       <div class="summary-Section">
         {/* Stock Summary   First Column*/}
         <div class="summary-column">

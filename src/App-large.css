@@ -29,6 +29,14 @@
     font-size: 10px;
   }
 
+  .summary-title{
+    margin-left: 1.5vw;
+  }
+
+.ticker-info-details{
+  margin-left: 1.5vw;
+}
+
   /* .App-header {
     background-color: #282c34;
     min-height: 100vh;
