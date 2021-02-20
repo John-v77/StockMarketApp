@@ -61,3 +61,136 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.Table-head-myList{
+  display: flex;
+  justify-items: flex-end;
+  align-items: baseline;
+  background-color: burlywood;
+}
+
+
+
+/* testing  */
+
+
+
+.list-row-myList{
+  margin:"0 20px";
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+
+}
+
+
+.Stock-cell {
+  margin:"0 20px"
+
+}
+
+.Stock-cell p:nth-child(2){
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.Stock-cell p:nth-child(1){
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.chart-Mylist{
+  width: 135px;
+  height: 45px;
+  background-color: lightslategray;
+}
+
+.moveLineBtn{
+  height: 45px;
+}
+
+.del-btn-myList{
+  background-color: lightcoral;
+  width: 40px;
+  height: 40px;
+}
+
+.top-bts-MyList{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.top-bts-MyList div{
+  margin: 0 10px;
+  background-color: lightgreen;
+}
+
+
+/* home page */
+
+
+.list-row-home{
+  margin:"0 20px";
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+
+}
+
+
+.Stock-cell {
+  margin:"0 20px"
+
+}
+
+.Stock-cell p:nth-child(2){
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.Stock-cell p:nth-child(1){
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+
+.moveLineBtn{
+  height: 45px;
+}
+
+
+.top-bts-home{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.top-bts-home div{
+  margin: 0 10px;
+  background-color: lightgreen;
+}
+
+
+/* News */
+
+.news{
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+
+}
+
+.news div{
+  background-color: lightslategray;
+  border-radius: 6px;
+  width: 15vw;
+  height: 15vw;
+
+    /* shadow */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}

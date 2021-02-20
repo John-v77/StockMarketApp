@@ -44,11 +44,8 @@ function QouteDetails(props) {
     //api token
     const token = "pk_695271cfa88a4f01969c642eb1576b3f";
     const interval = "intraday-prices";
-    const setPeriod = '';
-
     //axios request
     //stock/{symbol}/intraday-prices
-
     axios
       .get(
         `https://cloud.iexapis.com/stable/stock/${symbol}/${interval}?token=${token}`
@@ -60,16 +57,16 @@ function QouteDetails(props) {
   };
 
 
+
+   // UseEffect helps rendering the page without refreshing the page
   useEffect(() => {
     getStockChart("appl");
     getStockQuote("appl")
 
   }, []);
+//_______________________
 
 
-  
-  //Function for drawing a chart
-  //   drawChart(drawChart)
 
   //Function for getting a quote
   const getStockQuote = (symbol) => {
@@ -85,6 +82,8 @@ function QouteDetails(props) {
         setStock(dataZ.data);
       });
   };
+//_______________________
+
 
   const getData =(e)=>{
 
@@ -92,9 +91,9 @@ function QouteDetails(props) {
     getStockQuote(queryStock) 
 
   }
+  //_______________________
 
 
-  // UseEffect helps rendering the page without refreshing the page
  
   // Function that iterates throug the Quote Array and prints every key
   const displayData = () => {
@@ -110,11 +109,16 @@ function QouteDetails(props) {
     });
   };
 
-  //Returns the proper Html Page
+
+
+  //Changes price colors bases on increase of decrease
 const ChangeColors = (ChangeInPrice) =>  {
   return(ChangeInPrice > 0) ? "green" : "red"
 }
 
+
+
+//formats the number based on each case
 const numberFormat = (element) =>{
 
     if(typeof element != 'number'){
@@ -126,12 +130,12 @@ const numberFormat = (element) =>{
     }else if(element >= 1000000){
       return (element / 1000000).toFixed(2) +' mil'
     }element.toFixed(2)
-    // (element < 1) ? (element*100).toFixed(2) : 
-    // (element > 1000000000) ? ((element / 1000000000).toFixed(2) +' bil') : element.toFixed(2)
 
   }
 
- let priceColor = 'red'
+
+  
+let priceColor = 'red'
 console.log(ChangeColors(stock.change))
 
   return (
@@ -210,7 +214,7 @@ console.log(ChangeColors(stock.change))
         </div>
       </div>
       {/* {stock.companyName} */}
-      {displayData()}
+      {/* {displayData()} */}
     </div>
   );
 }
