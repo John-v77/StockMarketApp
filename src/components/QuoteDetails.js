@@ -127,9 +127,13 @@ const numberFormat = (element) =>{
     // Checks if the number is in procentage %
     if(element < 1){
       return (element*100).toFixed(2)
+    }else if(element >= 1000000000){
+      return (element / 1000000000).toFixed(2) +'B'
     }else if(element >= 1000000){
-      return (element / 1000000).toFixed(2) +' mil'
-    }element.toFixed(2)
+      return (element / 1000000).toFixed(2) +'M'
+    }else{
+      return element.toFixed(2)
+    }
 
   }
 
@@ -150,6 +154,9 @@ console.log(ChangeColors(stock.change))
               <div>
                 {stock.symbol} {stock.companyName}   {/*toFixed(2), style={{$priceColor}}*/}
               </div>
+              <div>
+                ${stock.iexAskPrice.toFixed(2)}
+              </div>
               <div style={{color:'red'}}>
                 ${stock.change.toFixed(2)} ({((stock.changePercent.toFixed(2))*100).toFixed(2)})%
               </div>
@@ -165,7 +172,8 @@ console.log(ChangeColors(stock.change))
       
      
           <LineChart
-            width={1200}
+
+            width={900}
             height={500}
             data={stockChart}
             margin={{
@@ -193,23 +201,23 @@ console.log(ChangeColors(stock.change))
         <div class="summary-column">
           <div> previousClose : {stock.previousClose} </div>
           <div> Open Price : {stock.iexOpen} </div>
-          <div> Average volume : {stock.avgTotalVolume} </div>
-          <div> Previous Volume : {stock.previousVolume} </div>
+          <div> Average volume : {(stock.avgTotalVolume/1000000).toFixed(2)}m </div>
+          <div> Previous Volume : {(stock.previousVolume/1000000).toFixed(2)}m </div>
         </div>
 
         {/* Stock Summary   Second Column*/}
         <div class="summary-column">
-          <div>Year to date : {stock.ytdChange} </div>
-          <div>52 Weeks Range : {stock.week52High - stock.week52Low}</div>
-          <div>Market Cap : {stock.marketCap}</div>
+          <div>Year to date : {((stock.ytdChange.toFixed(2))*100).toFixed(2)}% </div>
+          <div>52 Weeks Range : ${stock.week52High - stock.week52Low}</div>
+          <div>Market Cap : {(stock.marketCap/1000000000).toFixed(2)}b</div>
           <div>P/E : {stock.peRatio}</div>
         </div>
 
         {/* Stock Summary   Third Column*/}
         <div class="summary-column">
-          <div>Bid Price : {stock.iexBidPrice}</div>
+          <div>Bid Price : ${stock.iexBidPrice}</div>
           <div>Bid Size : {stock.iexBidSize} </div>
-          <div>Ask Price : {stock.iexAskPrice} </div>
+          <div>Ask Price : ${stock.iexAskPrice} </div>
           <div>Ask Size : {stock.iexAskSize} </div>
         </div>
       </div>

@@ -1,211 +1,132 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-
+// import {sortStocksByChange} from './myList';
+// import {sortStocksByName} from './myList';
+import "../App-large.css";
+import "../App-mid.css";
+import "../App.css";
 function MyList(props) {
 
+    let [sortedList, setSortedList] = useState([]);
+    let [sortBtn, setSortBtn] = useState(false)
 
-    const showRows = () => {
+    // useEffect(() => {
+    //     setSortedList(listStock)
+    // },[])
+    
+
+    //Placeholder for data base
+    let listStock =[
+        { symbol:'appl',
+                companyName: 'Apple', 
+                iexAskPrice:129.87,
+                change:-12,
+                changePercent:0.0987},   
+        { symbol:'tsla',
+                companyName: 'Tesla',  
+                iexAskPrice:781.30,
+                change:-6.08,
+                changePercent:-0.0077},
+        {  symbol:'bac',
+                companyName: 'Bank of America',  
+                iexAskPrice:34.54,
+                change:0.35,
+                changePercent:0.0102},
+        {  symbol:'nio', 
+                companyName: 'Nio INC', 
+                iexAskPrice:55.04,
+                change:0.61,
+                changePercent:0.0112},
+        { symbol:'pton', 
+                companyName: 'Peloton Inc', 
+                iexAskPrice:139.71,
+                change:+1.26,
+                changePercent:0.0091},
+        ]
+
+
+
+        const displaySortedStocks = () => {
+            
+        }
+
+        const sortStocksByName = (listOfObjects1) => {
+            let newArr1 = [...listOfObjects1]
+            return newArr1.sort((a,b) => a.companyName - b.companyName)
+        }
+
+        
+        const sortStocksByChange = (listOfObjects) => {
+            let newArr = [...listOfObjects]
+            newArr.sort((a,b) => a.changePercent - b.changePercent)
+            setSortedList(newArr)
+        }
 
 
 
 
-       
-           for (let i=0; i>5; i++){
-                
-            }
-                    
+
+
+
+
+
+
+    const displaySocks = () => {
+        return listStock.map((eachElement) => {
+            return (
+
+                <div class="list-row-myList">
+        
+               
+                    <div class="moveLineBtn">
+                        <button>
+                            move
+                        </button>
+                    </div> 
+
+                    <div class="Stock-cell">
+                            <p>{eachElement.symbol.toUpperCase()}</p>
+                            <p>{eachElement.companyName}</p>
+                    </div>
+
+                    <div class="chart-Mylist">
+                        <img src={require('../assets/chart.jpg')} alt="Small Chart" />
+                    </div>  
+
+                    <div class="Stock-cell">
+                            <p>{eachElement.iexAskPrice}</p>
+                            <p>${eachElement.change.toFixed(2)} ({((eachElement.changePercent.toFixed(2))*100).toFixed(2)})%</p>
+                    </div>
+                    <div class="del-btn-myList">
+                        <button class="delete-Btn">
+                            delete
+                        </button>
+                    </div>
+                </div>
+            )
+        })
     }
 
 
+    // Return -------------------------------------------------------------
     return (
         <div>
-        {/* class="component-container-myList" */}
             <h3 style={{marginLeft:'40px'}}> My List </h3>
-            
 
-            
-            {/* First Row */}
-        <div class='top-bts-MyList'>
-            <div>
-                <Link to="/SearchForm"><button>add stock</button></Link>
+            <div class='top-bts-MyList'>
+                <div>
+                    <Link to="/SearchForm"><button>add stock</button></Link>
+                </div>
+                
+                <div>
+                    <button onClick={sortStocksByChange}>
+                        sort
+                    </button>
+                </div>
             </div>
-            
-            <div>
-                <button>
-                    sort
-                </button>
-            </div>
-        </div>
 
-        <div class="list-row-myList">
-        
-               
-                    <div class="moveLineBtn">
-                        <button>
-                            move
-                        </button>
-                    </div> 
+            {displaySocks()}
 
-                    <div class="Stock-cell">
-                            <p>BAC</p>
-                            <p>Stock name</p>
-                    </div>
-
-                    <div class="chart-Mylist">
-                        <img src={require('../assets/chart.jpg')} alt="Small Chart" />
-                    </div>  
-
-                    <div class="Stock-cell">
-                            <p>$25.33</p>
-                            <p>+$3.20 (12.83%)</p>
-                    </div>
-                    <div class="del-btn-myList">
-                            del
-                    </div>
-        </div>
-
-
-
-        <div class="list-row-myList">
-        
-               
-                    <div class="moveLineBtn">
-                        <button>
-                            move
-                        </button>
-                    </div> 
-
-                    <div class="Stock-cell">
-                            <p>BAC</p>
-                            <p>Stock name</p>
-                    </div>
-
-                    <div class="chart-Mylist">
-                        <img src={require('../assets/chart.jpg')} alt="Small Chart" />
-                    </div>  
-
-                    <div class="Stock-cell">
-                            <p>$25.33</p>
-                            <p>+$3.20 (12.83%)</p>
-                    </div>
-                    <div class="del-btn-myList">
-                            del
-                    </div>
-        </div>
-
-
-        <div class="list-row-myList">
-        
-               
-                     <div class="moveLineBtn">
-                        <button>
-                            move
-                        </button>
-                    </div> 
-
-                    <div class="Stock-cell">
-                            <p>BAC</p>
-                            <p>Stock name</p>
-                    </div>
-
-                    <div class="chart-Mylist">
-                        <img src={require('../assets/chart.jpg')} alt="Small Chart" />
-                    </div>  
-
-                    <div class="Stock-cell">
-                            <p>$25.33</p>
-                            <p>+$3.20 (12.83%)</p>
-                    </div>
-                    <div class="del-btn-myList">
-                            del
-                    </div>
-        </div>
-
-
-        <div class="list-row-myList">
-        
-               
-                    <div class="moveLineBtn">
-                        <button>
-                            move
-                        </button>
-                    </div>  
-
-                    <div class="Stock-cell">
-                            <p>BAC</p>
-                            <p>Stock name</p>
-                    </div>
-
-                    <div class="chart-Mylist">
-                        <img src={require('../assets/chart.jpg')} alt="Small Chart" />
-                    </div>  
-
-                    <div class="Stock-cell">
-                            <p>$25.33</p>
-                            <p>+$3.20 (12.83%)</p>
-                    </div>
-                    <div class="del-btn-myList">
-                            del
-                    </div>
-        </div>
-
-
-
-        <div class="list-row-myList">
-        
-               
-                    <div class="moveLineBtn">
-                        <button>
-                            move
-                        </button>
-                    </div> 
-
-                    <div class="Stock-cell">
-                            <p>BAC</p>
-                            <p>Stock name</p>
-                    </div>
-
-                    <div class="chart-Mylist">
-                        <img src={require('../assets/chart.jpg')} alt="Small Chart" />
-                    </div>  
-
-                    <div class="Stock-cell">
-                            <p>$25.33</p>
-                            <p>+$3.20 (12.83%)</p>
-                    </div>
-                    <div class="del-btn-myList">
-                            del
-                    </div>
-        </div>
-
-
-
-
-
-
-
-            {/* <div class="Table-head-myList">
-                <div>add item</div>
-                <div>sort button</div>
-            </div>         
-            <div class='list-row-myList' class="flex-line">
-                <div>
-                    button on click lets you drag the list item in place you want
-                </div>
-                <div>
-                    <p>Symbol</p>
-                    <p>Stock name</p>
-                </div>
-                <div>
-                    <p>Chart</p>
-                </div>
-                <div>
-                    <p>Price</p><span><p>% change</p></span>
-                </div>
-                <div> button delete item</div>
-                <div></div>
-
-            </div> */}
         </div>
     );
 }

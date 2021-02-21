@@ -7,8 +7,9 @@ function navBar(props) {
         <div id='Header' class="shadow">
             <nav>
                 <Link class='text-light navBtn' to="/">Home</Link>
-                <Link class='text-light navBtn' to="QuoteDetails">Quote Details</Link>
                 <Link class='text-light navBtn' to="MyList">My List</Link>
+                <Link class='text-light navBtn' to="QuoteDetails">Quote Details</Link>
+                
             </nav>
             
         </div>

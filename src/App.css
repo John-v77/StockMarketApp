@@ -85,6 +85,7 @@
 
 
 .Stock-cell {
+  width: 15vw;
   margin:"0 20px"
 
 }
@@ -108,13 +109,22 @@
 }
 
 .moveLineBtn{
+  width: 3vw;
   height: 45px;
+
 }
 
 .del-btn-myList{
-  background-color: lightcoral;
   width: 40px;
   height: 40px;
+}
+
+.delete-Btn{
+  background-color: rgb(243, 89, 89);
+  height: 25px;
+  color: aliceblue;
+  border: none;
+  border-radius: 3px;
 }
 
 .top-bts-MyList{
@@ -194,3 +204,4 @@
     /* shadow */
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
