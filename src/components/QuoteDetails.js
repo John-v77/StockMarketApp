@@ -22,7 +22,7 @@ function QouteDetails(props) {
   // }
 
 
-
+// UseState helps rendering the page without refreshing the page
   let [stock, setStock] = useState(appl);
   let [stockChart, setSTockChart] = useState([]);
   let [queryStock, setQueryStock] = useState('');
@@ -58,10 +58,10 @@ function QouteDetails(props) {
 
 
 
-   // UseEffect helps rendering the page without refreshing the page
+   // UseEffect helps rendering without causing a infinite loop
   useEffect(() => {
-    getStockChart("appl");
-    getStockQuote("appl")
+    getStockChart("bac");
+    getStockQuote("bac")
 
   }, []);
 //_______________________
@@ -78,7 +78,7 @@ function QouteDetails(props) {
         `https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${token}`
       )
       .then((dataZ) => {
-        // console.log(dataZ);
+        console.log(dataZ);
         setStock(dataZ.data);
       });
   };
@@ -88,7 +88,7 @@ function QouteDetails(props) {
   const getData =(e)=>{
 
     getStockChart(queryStock); 
-    getStockQuote(queryStock) 
+    getStockQuote(queryStock); 
 
   }
   //_______________________
@@ -113,7 +113,7 @@ function QouteDetails(props) {
 
   //Changes price colors bases on increase of decrease
 const ChangeColors = (ChangeInPrice) =>  {
-  return(ChangeInPrice > 0) ? "green" : "red"
+  return(ChangeInPrice > 0) ? "#0B893E" : "#BF1722"
 }
 
 
@@ -125,8 +125,9 @@ const numberFormat = (element) =>{
         return element
     }
     // Checks if the number is in procentage %
-    if(element < 1){
-      return (element*100).toFixed(2)
+    if(element < 1 && element > 0){
+      element*=100;
+      return (element).toFixed(4)
     }else if(element >= 1000000000){
       return (element / 1000000000).toFixed(2) +'B'
     }else if(element >= 1000000){
@@ -138,26 +139,22 @@ const numberFormat = (element) =>{
   }
 
 
-  
-let priceColor = 'red'
-console.log(ChangeColors(stock.change))
-
   return (
 
     <div>
         <div class="component-container">
           <div class="ticker-info-details">
-          <div>
-            <input type="text" onChange={handleChange}/>
-            <button onClick={getData} type="submit">Find Stock</button>
+          <div class="search-ticker-details">
+            <input style={{width:'5vw'}}type="text" onChange={handleChange}/>
+            <button style={{backgroundColor:'#4F628E', color:'white', border:"none", borderRadius:'2px'}} onClick={getData} type="submit">Find Stock</button>
           </div>
               <div>
-                {stock.symbol} {stock.companyName}  
+              <b>{stock.companyName}</b> <p style={{fontSize:'14px'}}>{stock.symbol}</p>  
               </div>
-              <div>
-                ${stock.iexAskPrice ? stock.iexAskPrice : 0}
+              <div style={{color:ChangeColors(stock.change)}}>
+                ${stock.iexAskPrice ? stock.iexAskPrice : stock.close}
               </div>
-              <div style={{color:'red'}}>
+              <div style={{color:ChangeColors(stock.change)}}>
                 ${stock.change.toFixed(2)} ({((stock.changePercent.toFixed(2))*100).toFixed(2)})%
               </div>
           </div>
@@ -172,7 +169,7 @@ console.log(ChangeColors(stock.change))
       
      
           <LineChart
-
+            
             width={900}
             height={500}
             data={stockChart}
@@ -184,12 +181,12 @@ console.log(ChangeColors(stock.change))
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
+            <XAxis dataKey="minute" />
             <YAxis type="number" domain={['auto', 'auto']} />
             <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="high" stroke="#8884d8" dot={false} />
-            <Line type="monotone" dataKey="low" stroke="#82ca9d" dot={false} />
+            <Legend  />
+            <Line type="monotone" dataKey="high" stroke="#FC8C06" dot={false} />
+            <Line type="monotone" dataKey={"low"} stroke="#69B5F0" dot={false} />
           </LineChart>
       </div>
 

@@ -1,4 +1,5 @@
 import React, {useState}from 'react';
+import {Link} from 'react-router-dom';
 
 function SearchForm(props) {
 
@@ -12,7 +13,8 @@ function SearchForm(props) {
 
 
     const addStockToList =(e)=>{
-        return listStocks.push(stockSearched)
+        listStocks.push(stockSearched);
+        <Link class='text-light navBtn' to="MyList">My List</Link>
     }
 
 
@@ -22,7 +24,9 @@ function SearchForm(props) {
         <div>
                 <form class="Search Stock">
                     <input type="text" onChange={inputStock}/>
-                    <button onClick={addStockToList} type="submit">Find-Stock/Add Stock</button>
+                    <Link class='text-light navBtn' to="MyList">
+                        <button onClick={addStockToList} type="submit">Find-Stock/Add Stock</button>
+                    </Link>
                 </form>
                 <div>
                     {listStocks[0]}

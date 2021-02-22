@@ -6,6 +6,8 @@ import "../App-large.css";
 import "../App-mid.css";
 import "../App.css";
 function MyList(props) {
+
+    var liveStockList =[]
     let listStock =[
         { symbol:'appl',
                 companyName: 'Apple', 
@@ -51,6 +53,12 @@ function MyList(props) {
             
         // }
 
+
+          //Changes price colors bases on increase of decrease
+        const ChangeColors = (ChangeInPrice) =>  {
+        return(ChangeInPrice > 0) ? "#0B893E" : "#BF1722"
+        }
+
         const sortStocksByName = (listOfObjects1) => {
             let newArr1 = [...sortedList]
             return newArr1.sort((a,b) => a.companyName - b.companyName)
@@ -83,8 +91,9 @@ function MyList(props) {
 
     const displaySocks = () => {
         return sortedList.map((eachElement, keyOfRow) => {
+            let textColors = ChangeColors(eachElement.change)
             return (
-
+                
                 <div class="list-row-myList" key={keyOfRow}>
         
                
@@ -95,7 +104,7 @@ function MyList(props) {
                     </div> 
 
                     <div class="Stock-cell">
-                            <p>{eachElement.symbol.toUpperCase()}</p>
+                            <Link to="QuoteDetails" style={{color:'black'}}><p>{eachElement.symbol.toUpperCase()}</p></Link>
                             <p>{eachElement.companyName}</p>
                     </div>
 
@@ -104,8 +113,11 @@ function MyList(props) {
                     </div>  
 
                     <div class="Stock-cell">
-                            <p>{eachElement.iexAskPrice}</p>
-                            <p>${eachElement.change.toFixed(2)} ({((eachElement.changePercent.toFixed(2))*100).toFixed(2)})%</p>
+                            <p style={{color:`${textColors}`}}>
+                                {eachElement.iexAskPrice}</p>
+                            <p style={{color:`${textColors}`}}>
+                                ${eachElement.change.toFixed(2)} ({((eachElement.changePercent.toFixed(2))*100).toFixed(2)})%
+                            </p>
                     </div>
                     <div class="del-btn-myList">
                         <button onClick={() => deleteRow(keyOfRow)} class="delete-Btn">

@@ -131,10 +131,15 @@
   display: flex;
   justify-content: flex-end;
 }
+.search-ticker-details{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
 
 .top-bts-MyList div{
   margin: 0 10px;
-  background-color: lightgreen;
 }
 
 
@@ -196,7 +201,9 @@
 }
 
 .news div{
-  background-color: lightslategray;
+  background-color:white;
+  border-left: solid 1px black;
+  border-top: solid 1px black;
   border-radius: 6px;
   width: 15vw;
   height: 15vw;
