@@ -18,6 +18,7 @@ function App() {
           <Route exact path="/QuoteDetails" render={(props) => <QuoteDetails {...props}/>}/>
           <Route exact path="/MyList" render={(props) => <MyList {...props}/>}/>
           <Route exact path="/SearchForm" render={(props) => <SearchForm {...props}/>}/>
+          <Route exact path="/StockDetails/:symbol" render={(props) => <QuoteDetails {...props}/>}/>
           <Route path="" render={() => <p>Not Found</p>}/>
         </Switch>
     </div>

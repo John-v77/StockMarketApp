@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import "../App-large.css";
 import "../App-mid.css";
 import "../App.css";
+import chart from '../assets/chart.jpg';
 function MyList(props) {
 
     var liveStockList =[]
@@ -56,7 +57,7 @@ function MyList(props) {
 
           //Changes price colors bases on increase of decrease
         const ChangeColors = (ChangeInPrice) =>  {
-        return(ChangeInPrice > 0) ? "#0B893E" : "#BF1722"
+        return(ChangeInPrice > 0) ? "rgb(54 251 0)" : "rgb(169 8 63)"
         }
 
         const sortStocksByName = (listOfObjects1) => {
@@ -104,12 +105,12 @@ function MyList(props) {
                     </div> 
 
                     <div class="Stock-cell">
-                            <Link to="QuoteDetails" style={{color:'black'}}><p>{eachElement.symbol.toUpperCase()}</p></Link>
+                            <Link to="StockDetails/:symbol" style={{color:'black'}}><p>{eachElement.symbol.toUpperCase()}</p></Link>
                             <p>{eachElement.companyName}</p>
                     </div>
 
                     <div class="chart-Mylist">
-                        <img src={require('../assets/chart.jpg')} alt="Small Chart" />
+                        {/* <img src={require('../assets/chart.jpg')} alt="Small Chart" /> */}
                     </div>  
 
                     <div class="Stock-cell">

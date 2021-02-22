@@ -2,6 +2,9 @@ import React, {useState}from 'react';
 import {Link} from 'react-router-dom';
 
 function SearchForm(props) {
+//     </div>
+//         {this.state.seen ? <PopUp toggle={this.togglePop} /> : null}
+// </div>
 
     let [stockSearched, setstockSearched ] = useState('')
     var listStocks = []

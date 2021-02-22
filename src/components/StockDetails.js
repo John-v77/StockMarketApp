@@ -5,7 +5,10 @@ import "../App-large.css";
 import "../App-mid.css";
 import "../App.css";
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer } from "recharts";
-function QouteDetails(props) {
+function StockDetails(props) {
+  
+  console.log('props', props)
+
   //Set State
   
 
@@ -31,7 +34,7 @@ function QouteDetails(props) {
 
   const handleChange = (e) => {
     
-    console.log(e.target.value)
+    // console.log(e.target.value)
     setQueryStock(e.target.value)
   }
 
@@ -78,7 +81,7 @@ function QouteDetails(props) {
         `https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${token}`
       )
       .then((dataZ) => {
-        console.log(dataZ);
+        // console.log(dataZ);
         setStock(dataZ.data);
       });
   };
@@ -224,4 +227,4 @@ const numberFormat = (element) =>{
   );
 }
 
-export default QouteDetails;
+export default StockDetails;

@@ -1,8 +1,52 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import chart from '../assets/chart.jpg';
 
 function MainPage(props) {
+
+        let[newsZ, setNewsZ] = useState([])
+        //news API
+        let symbol ='Bank of America'
+        let token ='1d6df61d07df4f56ac57fa785fce0fc9'
+
+
+useEffect(() => {
+        axios
+        .get(
+          `http://newsapi.org/v2/everything?q=${symbol}&from=2021-02-22&sortBy=popularity&apiKey=${token}`
+        )
+        .then((res) => {
+        //   console.log(res.data.articles);
+           setNewsZ(res.data.articles);
+        //    console.log(newsZ);
+        
+        });
+    }, [])
+
+
+    const displayNews = () =>{
+        let newArr = [...newsZ].slice(2,5)
+        console.log(newArr);
+       return newArr.map(element => {
+           return(
+            <div class='newsCell'>
+                <div>
+                    <img style={{width:'303px', height:'120px'}} src={element.urlToImage}/>
+                
+                
+                    <b><p>{element.title}</p></b>
+                
+                
+                    <p>{element.content}</p>
+                
+                
+                    <p>{element.author}</p>
+                </div>
+            </div>
+            
+            )})
+    }
 
         let listStock =[
             { symbol:'appl',
@@ -70,6 +114,7 @@ function MainPage(props) {
     
     
         const displaySocks = () => {
+            
             return sortedList.map((eachElement, keyOfRow) => {
                 return (
     
@@ -88,12 +133,14 @@ function MainPage(props) {
                         </div>
     
                         <div class="chart-Mylist">
-                            <img src={require('../assets/chart.jpg')} alt="Small Chart" />
+                            <img src={chart} alt="Small Chart" />
                         </div>  
     
                         <div class="Stock-cell">
-                                <p>{eachElement.iexAskPrice}</p>
-                                <p>${eachElement.change.toFixed(2)} ({((eachElement.changePercent.toFixed(2))*100).toFixed(2)})%</p>
+                                <p style={{color:`${textColors}`}}>
+                                {eachElement.iexAskPrice}</p>
+                                <p style={{color:`${textColors}`}}>
+                                ${eachElement.change.toFixed(2)} ({((eachElement.changePercent.toFixed(2))*100).toFixed(2)})%</p>
                         </div>
                         <div class="del-btn-myList">
                             <button onClick={() => deleteRow(keyOfRow)} class="delete-Btn">
@@ -225,20 +272,8 @@ function MainPage(props) {
 
 
     <div class='news'>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        
+        {displayNews()}
     </div>
-
-
-
-
-
-
-
-
 
 
         </div>
