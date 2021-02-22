@@ -1,7 +1,7 @@
 import React, {useState}from 'react';
 import {Link} from 'react-router-dom';
 
-function SearchForm(props) {
+function SearchForm({sortedList, setSortedList}) {
 //     </div>
 //         {this.state.seen ? <PopUp toggle={this.togglePop} /> : null}
 // </div>
@@ -16,8 +16,15 @@ function SearchForm(props) {
 
 
     const addStockToList =(e)=>{
-        listStocks.push(stockSearched);
-        <Link class='text-light navBtn' to="MyList">My List</Link>
+        // listStocks.push(stockSearched);
+        // <Link class='text-light navBtn' to="MyList">My List</Link>
+        let list = [...sortedList]
+        list.push(
+            { symbol:stockSearched, companyName:stockSearched,  iexAskPrice:129.87,
+        change:-12,
+        changePercent:-0.0987}
+            )
+            setSortedList(list)
     }
 
 

@@ -111,11 +111,16 @@ useEffect(() => {
                 setSortedList(newArr)
                 console.log('Delete', keyOfRow, sortedList )
             }
-    
+            
+            const ChangeColors = (ChangeInPrice) =>  {
+                return(ChangeInPrice > 0) ? "rgb(54 251 0)" : "rgb(169 8 63)"
+                }
     
         const displaySocks = () => {
+
             
             return sortedList.map((eachElement, keyOfRow) => {
+                let textColors = ChangeColors(eachElement.change)
                 return (
     
                     <div class="list-row-myList" key={keyOfRow}>

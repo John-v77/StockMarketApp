@@ -6,38 +6,10 @@ import "../App-large.css";
 import "../App-mid.css";
 import "../App.css";
 import chart from '../assets/chart.jpg';
-function MyList(props) {
+function MyList({sortedList, setSortedList}) {
 
     var liveStockList =[]
-    let listStock =[
-        { symbol:'appl',
-                companyName: 'Apple', 
-                iexAskPrice:129.87,
-                change:-12,
-                changePercent:-0.0987},   
-        { symbol:'tsla',
-                companyName: 'Tesla',  
-                iexAskPrice:781.30,
-                change:-6.08,
-                changePercent:-0.0077},
-        {  symbol:'bac',
-                companyName: 'Bank of America',  
-                iexAskPrice:34.54,
-                change:0.35,
-                changePercent:0.0102},
-        {  symbol:'nio', 
-                companyName: 'Nio INC', 
-                iexAskPrice:55.04,
-                change:0.61,
-                changePercent:0.0112},
-        { symbol:'pton', 
-                companyName: 'Peloton Inc', 
-                iexAskPrice:139.71,
-                change:+1.26,
-                changePercent:0.0091},
-        ]
-
-    let [sortedList, setSortedList] = useState(listStock);
+ 
     let [sortBtn, setSortBtn] = useState(false);
 
     // useEffect(() => {
@@ -46,7 +18,6 @@ function MyList(props) {
     
 
     //Placeholder for data base
-
 
 
 
@@ -105,7 +76,7 @@ function MyList(props) {
                     </div> 
 
                     <div class="Stock-cell">
-                            <Link to="StockDetails/:symbol" style={{color:'black'}}><p>{eachElement.symbol.toUpperCase()}</p></Link>
+                            <Link to={`StockDetails/${eachElement.symbol}`}w style={{color:'black'}}><p>{eachElement.symbol.toUpperCase()}</p></Link>
                             <p>{eachElement.companyName}</p>
                     </div>
 

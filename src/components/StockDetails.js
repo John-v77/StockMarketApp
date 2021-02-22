@@ -6,7 +6,7 @@ import "../App-mid.css";
 import "../App.css";
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer } from "recharts";
 function StockDetails(props) {
-  
+
   console.log('props', props)
 
   //Set State
@@ -63,8 +63,8 @@ function StockDetails(props) {
 
    // UseEffect helps rendering without causing a infinite loop
   useEffect(() => {
-    getStockChart("bac");
-    getStockQuote("bac")
+    getStockChart(props.match.params.symbol);
+    getStockQuote(props.match.params.symbol)
 
   }, []);
 //_______________________
