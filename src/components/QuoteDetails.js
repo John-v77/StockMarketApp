@@ -152,10 +152,10 @@ console.log(ChangeColors(stock.change))
             <button onClick={getData} type="submit">Find Stock</button>
           </div>
               <div>
-                {stock.symbol} {stock.companyName}   {/*toFixed(2), style={{$priceColor}}*/}
+                {stock.symbol} {stock.companyName}  
               </div>
               <div>
-                ${stock.iexAskPrice.toFixed(2)}
+                ${stock.iexAskPrice ? stock.iexAskPrice : 0}
               </div>
               <div style={{color:'red'}}>
                 ${stock.change.toFixed(2)} ({((stock.changePercent.toFixed(2))*100).toFixed(2)})%
@@ -208,7 +208,7 @@ console.log(ChangeColors(stock.change))
         {/* Stock Summary   Second Column*/}
         <div class="summary-column">
           <div>Year to date : {((stock.ytdChange.toFixed(2))*100).toFixed(2)}% </div>
-          <div>52 Weeks Range : ${stock.week52High - stock.week52Low}</div>
+          <div>52 Weeks Range : ${(stock.week52High - stock.week52Low).toFixed(2)}</div>
           <div>Market Cap : {(stock.marketCap/1000000000).toFixed(2)}b</div>
           <div>P/E : {stock.peRatio}</div>
         </div>

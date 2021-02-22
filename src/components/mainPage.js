@@ -25,7 +25,9 @@ function MainPage(props) {
             
             {/* First Row */}
         <div class='top-bts-MyList'>
-            <div>toggle sort</div>
+                 <div>
+                    <button>sort</button>
+                </div>
             {/* <div>
                 <Link to="/SearchForm"><button>add stock</button></Link>
             </div> */}
@@ -35,7 +37,9 @@ function MainPage(props) {
         
                
                     <div class="moveLineBtn">
-                        <img src={require('../assets/6dots.png')} alt="Button to move line" />
+                        <button>
+                            move
+                        </button>
                     </div> 
 
                     <div class="Stock-cell">
@@ -84,7 +88,9 @@ function MainPage(props) {
             <div>
                 <Link to="/SearchForm"><button>add stock</button></Link>
             </div>
-            <div>toggle sort</div>
+            <div>
+                <button>sort</button>
+            </div>
         </div>
 
         <div class="list-row-myList">

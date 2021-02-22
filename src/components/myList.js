@@ -6,22 +6,12 @@ import "../App-large.css";
 import "../App-mid.css";
 import "../App.css";
 function MyList(props) {
-
-    let [sortedList, setSortedList] = useState([]);
-    let [sortBtn, setSortBtn] = useState(false)
-
-    // useEffect(() => {
-    //     setSortedList(listStock)
-    // },[])
-    
-
-    //Placeholder for data base
     let listStock =[
         { symbol:'appl',
                 companyName: 'Apple', 
                 iexAskPrice:129.87,
                 change:-12,
-                changePercent:0.0987},   
+                changePercent:-0.0987},   
         { symbol:'tsla',
                 companyName: 'Tesla',  
                 iexAskPrice:781.30,
@@ -44,11 +34,22 @@ function MyList(props) {
                 changePercent:0.0091},
         ]
 
+    let [sortedList, setSortedList] = useState(listStock);
+    let [sortBtn, setSortBtn] = useState(false);
+
+    // useEffect(() => {
+    //     setSortedList(listStock)
+    // },[])
+    
+
+    //Placeholder for data base
 
 
-        const displaySortedStocks = () => {
+
+
+        // const displaySortedStocks = () => {
             
-        }
+        // }
 
         const sortStocksByName = (listOfObjects1) => {
             let newArr1 = [...listOfObjects1]
@@ -56,26 +57,34 @@ function MyList(props) {
         }
 
         
-        const sortStocksByChange = (listOfObjects) => {
-            let newArr = [...listOfObjects]
+        const sortStocksByChange = () => {
+            let newArr = [...listStock]
+            if(sortBtn === false){
+
             newArr.sort((a,b) => a.changePercent - b.changePercent)
             setSortedList(newArr)
+            setSortBtn(true)
+            }else if(sortBtn === true){
+            newArr.sort((a,b) => b.changePercent - a.changePercent)
+            setSortedList(newArr)
+            setSortBtn(false) 
+            }
         }
 
 
 
-
-
-
-
-
+        const deleteRow = (keyOfRow) => {
+            let newArr = [...listStock]
+            newArr.splice(keyOfRow,1)
+            setSortedList(newArr)
+        }
 
 
     const displaySocks = () => {
-        return listStock.map((eachElement) => {
+        return sortedList.map((eachElement, keyOfRow) => {
             return (
 
-                <div class="list-row-myList">
+                <div class="list-row-myList" key={keyOfRow}>
         
                
                     <div class="moveLineBtn">
@@ -98,7 +107,7 @@ function MyList(props) {
                             <p>${eachElement.change.toFixed(2)} ({((eachElement.changePercent.toFixed(2))*100).toFixed(2)})%</p>
                     </div>
                     <div class="del-btn-myList">
-                        <button class="delete-Btn">
+                        <button onClick={() => deleteRow(keyOfRow)} class="delete-Btn">
                             delete
                         </button>
                     </div>
@@ -119,9 +128,7 @@ function MyList(props) {
                 </div>
                 
                 <div>
-                    <button onClick={sortStocksByChange}>
-                        sort
-                    </button>
+                    <button onClick={sortStocksByChange}>sort</button>
                 </div>
             </div>
 
