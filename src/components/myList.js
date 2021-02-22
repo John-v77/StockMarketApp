@@ -52,13 +52,13 @@ function MyList(props) {
         // }
 
         const sortStocksByName = (listOfObjects1) => {
-            let newArr1 = [...listOfObjects1]
+            let newArr1 = [...sortedList]
             return newArr1.sort((a,b) => a.companyName - b.companyName)
         }
 
         
         const sortStocksByChange = () => {
-            let newArr = [...listStock]
+            let newArr = [...sortedList]
             if(sortBtn === false){
 
             newArr.sort((a,b) => a.changePercent - b.changePercent)
@@ -74,9 +74,10 @@ function MyList(props) {
 
 
         const deleteRow = (keyOfRow) => {
-            let newArr = [...listStock]
+            let newArr = [...sortedList]
             newArr.splice(keyOfRow,1)
             setSortedList(newArr)
+            console.log('Delete', keyOfRow, sortedList )
         }
 
 
