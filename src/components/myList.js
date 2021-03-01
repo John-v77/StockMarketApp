@@ -70,9 +70,9 @@ function MyList({sortedList, setSortedList}) {
         
                
                     <div class="moveLineBtn">
-                        <button>
+                        {/* <button>
                             move
-                        </button>
+                        </button> */}
                     </div> 
 
                     <div class="Stock-cell">

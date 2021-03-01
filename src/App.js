@@ -15,11 +15,11 @@ function App() {
 //list
 let listStock =[
         
-  { symbol:'appl',
-          companyName: 'Apple', 
-          iexAskPrice:129.87,
-          change:-12,
-          changePercent:-0.0987},   
+  { symbol:'spy',
+          companyName: 'SNP 500', 
+          iexAskPrice:380.36,
+          change:-1.97,
+          changePercent:-0.0052},   
   { symbol:'tsla',
           companyName: 'Tesla',  
           iexAskPrice:781.30,
