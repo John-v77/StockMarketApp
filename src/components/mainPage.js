@@ -26,7 +26,7 @@ useEffect(() => {
 
 
     const displayNews = () =>{
-        let newArr = [...newsZ].slice(2,5)
+        let newArr = [...newsZ].slice(0,3)
         console.log(newArr);
        return newArr.map(element => {
            return(
