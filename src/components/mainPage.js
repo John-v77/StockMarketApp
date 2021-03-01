@@ -14,7 +14,7 @@ function MainPage(props) {
 useEffect(() => {
         axios
         .get(
-          `http://newsapi.org/v2/everything?q=${symbol}&from=2021-02-22&sortBy=popularity&apiKey=${token}`
+          `https://newsapi.org/v2/everything?q=${symbol}&from=2021-02-22&sortBy=popularity&apiKey=${token}`
         )
         .then((res) => {
         //   console.log(res.data.articles);
