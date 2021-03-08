@@ -180,7 +180,7 @@ const numberFormat = (element) =>{
               bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid vertical horizontal={false} verticalFill={["#555555",'#444444']} fillOpacity={0.2} />
             <XAxis dataKey="minute" />
             <YAxis type="number" domain={['auto', 'auto']} />
             <Tooltip />
