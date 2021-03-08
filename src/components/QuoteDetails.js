@@ -185,8 +185,8 @@ const numberFormat = (element) =>{
             <YAxis type="number" domain={['auto', 'auto']} />
             <Tooltip />
             <Legend  />
-            <Line type="monotone" dataKey="high" stroke="yellow" dot={false} />
-            <Line type="monotone" dataKey={"low"} stroke="red" dot={false} />
+            <Line  isAnimationActive={false} type="monotone" dataKey="high" stroke="yellow" dot={false} />
+            <Line isAnimationActive={false} type="monotone" dataKey={"low"} stroke="red" dot={false} />
           </LineChart>
       </div>
 
